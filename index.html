@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <base href="https://smmus.github.io/timerzz/">
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta developer='smmus'>
+
+    <title>Timerzz</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="index.css">
+
+    <script>
+        /*------------- SERVICE WORKER  --------------*/
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('[REGISTERED]: SERVICE WORKER FILE :', reg.scope))
+                .catch(err => console.log('[ERROR]: registering sw', err));
+        }
+    </script>
+
+    <!-- manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a style="cursor: pointer;" href="#!" class="brand-logo left sidenav-trigger" data-target="slide-out">
+                <a href="#" data-target="slide-out" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+                Timerzz
+            </a>
+            <ul class="right">
+                <li><i class="material-icons">brightness_medium</i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul id="slide-out" class="sidenav">
+
+        <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Notifications</a></li>
+
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Defaults</a></li>
+
+        <li><a class="waves-effect" href="#!" onclick="addNameDate('Medical Admission', 1648749600000)">Medical
+                Admission</a></li>
+        <li><a class="waves-effect" href="#!" onclick="addNameDate('Dental Admission', 1649268000000)">Dental
+                Admission</a></li>
+        <li><a class="waves-effect" href="#!" onclick="addNameDate('Now', new Date().getTime() )">Used Time</a></li>
+        <li><a class="waves-effect" href="#!" onclick="addNameDate('Tomorrow', `${new Date().getTime()}`)">Tomorrow</a>
+        </li>
+
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Customs</a></li>
+        <li><a class="waves-effect modal-trigger" data-target="addNew" href="#modal1"> <i
+                    class="material-icons">add</i>ADD NEW</a></li>
+    </ul>
+
+    <!--------------------container -------------------->
+    <div class="container">
+
+    </div>
+
+
+
+
+
+    <!-- --------------------------floating buttons------------------ -->
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red modal-trigger" data-target="addNew" href="#modal1">
+            <i class="large material-icons">playlist_add</i>
+        </a>
+    </div>
+
+    <!-- ---------------------------------add new timer modal ----------------------------- 
+     -->
+    <!-- Modal Trigger -->
+
+    <!-- Modal Structure -->
+    <div id="addNew" class="modal">
+        <div class="modal-content" style="height: 60vh;">
+            <h6 style="margin-bottom: 1.2em;">Add New</h6>
+            <div class="input-field">
+                <input placeholder="Name" id="timer_name" type="text" class="validate timer_name">
+                <!-- <label for="timer_name">Name</label> -->
+            </div>
+            <div>
+                <input id="timer_date" placeholder="Date" type="text" class="datepicker">
+            </div>
+            <div>
+                <input id="timer_time" placeholder="Time" type="text" class="timepicker">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" onclick="addNewTimer(this)" class="modal-close waves-effect waves-green btn-flat">ADD</a>
+        </div>
+    </div>
+
+
+</body>
+<script defer src="index.js"></script>
+
+</html>
